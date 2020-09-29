@@ -1,4 +1,4 @@
-package com.main;
+package standaloneApp;
 
 public class Main {
 
