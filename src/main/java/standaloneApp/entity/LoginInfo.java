@@ -4,13 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class loginInfo {
+public class LoginInfo {
     @Id
     private String regId;
     private String loginId;
     private String password;
 
-    public loginInfo(String regId, String loginId, String password) {
+    public LoginInfo(String regId, String loginId, String password) {
         this.regId = regId;
         this.loginId = loginId;
         this.password = password;

@@ -4,13 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class userInfo {
+public class UserInfo {
     @Id
     private String regId;
     private String name;
     private int accessLevel;    //1 for admin, 2 for teacher and 3 for student
 
-    public userInfo(String regId, String name, int accessLevel) {
+    public UserInfo(String regId, String name, int accessLevel) {
         this.regId = regId;
         this.name = name;
         this.accessLevel = accessLevel;

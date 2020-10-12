@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class inventory {
+public class Inventory {
     @Id
     private String bookId;
     private String bookName;
@@ -12,7 +12,7 @@ public class inventory {
     private int totalCopies;
     private int availableCopies;
 
-    public inventory(String bookId, String bookName, String authorName, int totalCopies, int availableCopies) {
+    public Inventory(String bookId, String bookName, String authorName, int totalCopies, int availableCopies) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.authorName = authorName;

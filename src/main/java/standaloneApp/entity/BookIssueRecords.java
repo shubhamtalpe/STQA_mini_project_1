@@ -5,14 +5,14 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class bookIssueRecords {
+public class BookIssueRecords {
     @Id
     private String issueTransacId;
     private String regId;
     private String bookId;
     private String date;
 
-    public bookIssueRecords(String regId, String bookId, String date) {
+    public BookIssueRecords(String regId, String bookId, String date) {
         this.setIssueTransacId(UUID.randomUUID().toString());
         this.regId = regId;
         this.bookId = bookId;

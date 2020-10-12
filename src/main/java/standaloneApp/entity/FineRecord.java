@@ -5,14 +5,14 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class fineRecord {
+public class FineRecord {
     @Id
     private String fineRecordId;
     private String regId;
     private String bookId;
     private int fineAmount;
 
-    public fineRecord(String regId, String bookId, int fineAmount) {
+    public FineRecord(String regId, String bookId, int fineAmount) {
         this.setFineRecordId(UUID.randomUUID().toString());
         this.regId = regId;
         this.bookId = bookId;
