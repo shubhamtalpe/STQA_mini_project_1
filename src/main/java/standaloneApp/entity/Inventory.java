@@ -24,6 +24,18 @@ public class Inventory {
         return bookId;
     }
 
+    public boolean isAvailable(){
+        return this.availableCopies != 0;
+    }
+
+    public void issueBook(){
+        this.availableCopies -= 1;
+    }
+
+    public void acceptBook(){
+        this.availableCopies += 1;
+    }
+
     public void setBookId(String bookId) {
         this.bookId = bookId;
     }

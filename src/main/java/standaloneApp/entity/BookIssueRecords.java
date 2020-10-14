@@ -11,12 +11,22 @@ public class BookIssueRecords {
     private String regId;
     private String bookId;
     private String date;
+    private boolean isReturned;
 
     public BookIssueRecords(String regId, String bookId, String date) {
         this.setIssueTransacId(UUID.randomUUID().toString());
         this.regId = regId;
         this.bookId = bookId;
         this.date = date;
+        this.isReturned = false;
+    }
+
+    public boolean isReturned() {
+        return isReturned;
+    }
+
+    public void setReturned(boolean returned) {
+        isReturned = returned;
     }
 
     public String getIssueTransacId() {
