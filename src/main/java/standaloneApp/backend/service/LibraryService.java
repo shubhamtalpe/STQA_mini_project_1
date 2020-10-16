@@ -1,13 +1,13 @@
-package standaloneApp.service;
+package standaloneApp.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import standaloneApp.entity.BookIssueRecords;
-import standaloneApp.entity.BookReturnRecords;
-import standaloneApp.entity.Inventory;
-import standaloneApp.repository.BookIssueRecordsRepository;
-import standaloneApp.repository.BookReturnRecordsRepository;
-import standaloneApp.repository.InventoryRepository;
+import standaloneApp.backend.entity.BookIssueRecords;
+import standaloneApp.backend.entity.BookReturnRecords;
+import standaloneApp.backend.entity.Inventory;
+import standaloneApp.backend.repository.BookIssueRecordsRepository;
+import standaloneApp.backend.repository.BookReturnRecordsRepository;
+import standaloneApp.backend.repository.InventoryRepository;
 
 import java.util.List;
 

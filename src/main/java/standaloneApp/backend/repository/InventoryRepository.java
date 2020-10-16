@@ -1,7 +1,7 @@
-package standaloneApp.repository;
+package standaloneApp.backend.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import standaloneApp.entity.Inventory;
+import standaloneApp.backend.entity.Inventory;
 
 public interface InventoryRepository extends CrudRepository<Inventory, String> {
 }

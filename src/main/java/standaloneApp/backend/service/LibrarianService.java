@@ -1,9 +1,9 @@
-package standaloneApp.service;
+package standaloneApp.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import standaloneApp.entity.UserInfo;
-import standaloneApp.repository.UserInfoRepository;
+import standaloneApp.backend.entity.UserInfo;
+import standaloneApp.backend.repository.UserInfoRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

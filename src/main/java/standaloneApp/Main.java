@@ -9,10 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Main implements CommandLineRunner {
     @Autowired
-    private standaloneApp.service.StudentService studentService;
+    private standaloneApp.backend.service.StudentService studentService;
 
     public static void main(String[] args) {
-	// write your code here
+        // write your code here
         SpringApplication app = new SpringApplication(Main.class);
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);

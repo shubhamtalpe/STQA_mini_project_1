@@ -1,17 +1,17 @@
-package standaloneApp.service;
+package standaloneApp.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentService {
+public class TeacherService {
     @Autowired
     LibraryService libraryService;
 
     private int allowedNumberOfBooks;
 
-    public StudentService() {
-        this.allowedNumberOfBooks = 3;
+    public TeacherService() {
+        this.allowedNumberOfBooks = 5;
     }
 
     public int getAllowedNumberOfBooks() {

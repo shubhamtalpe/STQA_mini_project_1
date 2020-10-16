@@ -1,4 +1,4 @@
-package standaloneApp.entity;
+package standaloneApp.backend.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

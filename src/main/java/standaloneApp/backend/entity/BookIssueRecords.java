@@ -1,30 +1,40 @@
-package standaloneApp.entity;
+package standaloneApp.backend.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class BookReturnRecords {
+public class BookIssueRecords {
     @Id
-    private String returnTransacId;
+    private String issueTransacId;
     private String regId;
     private String bookId;
     private String date;
+    private boolean isReturned;
 
-    public BookReturnRecords(String regId, String bookId, String date) {
-        this.setReturnTransacId(UUID.randomUUID().toString());
+    public BookIssueRecords(String regId, String bookId, String date) {
+        this.setIssueTransacId(UUID.randomUUID().toString());
         this.regId = regId;
         this.bookId = bookId;
         this.date = date;
+        this.isReturned = false;
     }
 
-    public String getReturnTransacId() {
-        return returnTransacId;
+    public boolean isReturned() {
+        return isReturned;
     }
 
-    public void setReturnTransacId(String returnTransacId) {
-        this.returnTransacId = returnTransacId;
+    public void setReturned(boolean returned) {
+        isReturned = returned;
+    }
+
+    public String getIssueTransacId() {
+        return issueTransacId;
+    }
+
+    public void setIssueTransacId(String issueTransacId) {
+        this.issueTransacId = issueTransacId;
     }
 
     public String getRegId() {

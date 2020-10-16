@@ -1,7 +1,7 @@
-package standaloneApp.repository;
+package standaloneApp.backend.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import standaloneApp.entity.LoginInfo;
+import standaloneApp.backend.entity.LoginInfo;
 
 public interface LoginInfoRepository extends CrudRepository<LoginInfo, String> {
 }

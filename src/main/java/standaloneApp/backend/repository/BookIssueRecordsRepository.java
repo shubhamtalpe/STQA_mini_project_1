@@ -1,7 +1,7 @@
-package standaloneApp.repository;
+package standaloneApp.backend.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import standaloneApp.entity.BookIssueRecords;
+import standaloneApp.backend.entity.BookIssueRecords;
 
 import java.util.List;
 
