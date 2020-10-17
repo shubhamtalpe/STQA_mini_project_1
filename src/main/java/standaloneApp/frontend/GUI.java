@@ -1,6 +1,7 @@
 package standaloneApp.frontend;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,13 +39,14 @@ public class GUI implements ActionListener {
         f.add(b4);
         b4.addActionListener(this);*/
         f.setLayout(null);
+        System.out.println(f.getContentPane().getSize());
         loginField = new JTextField();
-        loginField.setBounds(700,300,500,30);
+        loginField.setBounds(750,300,500,30);
 
         passwordField = new JPasswordField();
-        passwordField.setBounds(700,400,500,30);
+        passwordField.setBounds(750,400,500,30);
         login = new JButton("Login");
-        login.setBounds(800,500,250,30);
+        login.setBounds(875,500,250,30);
         login.addActionListener(this);
         f.add(passwordField);
         f.add(loginField);
@@ -53,12 +55,20 @@ public class GUI implements ActionListener {
     }
 
 
+    void mainPage() {
+
+    }
+
     public void actionPerformed(ActionEvent e)
     {
 
         f.getContentPane().removeAll();
         f.revalidate();
         f.repaint();
+
+        if(e.getSource() == login) {
+            mainPage();
+        }
 
         if(e.getSource() == b1)
         {
