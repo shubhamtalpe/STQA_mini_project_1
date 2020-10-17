@@ -18,6 +18,7 @@ public class GUI implements ActionListener {
     JTable table;
     String name;
     int rollno,age,maths,science,english,computer;
+
     void loginPage()
     {
         /*b1 = new JButton("Insert Data");
@@ -36,6 +37,7 @@ public class GUI implements ActionListener {
         b4.setBounds(50,400, 400, 30);
         f.add(b4);
         b4.addActionListener(this);*/
+        f.setLayout(null);
         loginField = new JTextField();
         loginField.setBounds(700,300,500,30);
 
@@ -47,12 +49,7 @@ public class GUI implements ActionListener {
         f.add(passwordField);
         f.add(loginField);
         f.add(login);
-
-
-        f.setLayout(null);
-
-
-
+        f.setVisible(true);
     }
 
 
@@ -219,7 +216,8 @@ public class GUI implements ActionListener {
         try
         {
             f.setSize(1920,1080);
-            f.setVisible(true);
+            f.setResizable(true);
+            f.setExtendedState(JFrame.MAXIMIZED_BOTH);
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             loginPage();
         }
