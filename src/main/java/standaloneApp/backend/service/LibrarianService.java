@@ -12,10 +12,10 @@ import java.io.IOException;
 @Service
 public class LibrarianService {
     @Autowired
-    LibraryService libraryService;
+    private LibraryService libraryService;
 
     @Autowired
-    UserInfoRepository userInfoRepository;
+    private UserInfoRepository userInfoRepository;
 
     private int allowedNumberOfBooks;
 

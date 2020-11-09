@@ -10,6 +10,10 @@ public class LoginInfo {
     private String loginId;
     private String password;
 
+    public LoginInfo() {
+
+    }
+
     public LoginInfo(String regId, String loginId, String password) {
         this.regId = regId;
         this.loginId = loginId;

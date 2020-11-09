@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TeacherService {
     @Autowired
-    LibraryService libraryService;
+    private LibraryService libraryService;
 
     private int allowedNumberOfBooks;
 
