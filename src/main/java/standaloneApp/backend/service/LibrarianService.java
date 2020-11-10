@@ -2,12 +2,15 @@ package standaloneApp.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import standaloneApp.backend.entity.Inventory;
 import standaloneApp.backend.entity.UserInfo;
+import standaloneApp.backend.repository.InventoryRepository;
 import standaloneApp.backend.repository.UserInfoRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class LibrarianService {
@@ -17,22 +20,24 @@ public class LibrarianService {
     @Autowired
     private UserInfoRepository userInfoRepository;
 
-    private int allowedNumberOfBooks;
+    @Autowired
+    private InventoryRepository inventoryRepository;
 
-    public LibrarianService() {
-        this.allowedNumberOfBooks = 5;
+    public LibrarianService(){
     }
 
-    public int getAllowedNumberOfBooks() {
-        return allowedNumberOfBooks;
-    }
-
-    public void setAllowedNumberOfBooks(int allowedNumberOfBooks) {
-        this.allowedNumberOfBooks = allowedNumberOfBooks;
-    }
-
-    public String takeBook(String regId, String bookId, String date){
-        return libraryService.issueBook(regId, bookId, date, allowedNumberOfBooks);
+    public String issueBook(String regId, String bookId, String date){
+        UserInfo uinfo = userInfoRepository.findByRegId(regId);
+        int accLevel = uinfo.getAccessLevel();
+        if(accLevel == 1){
+            return libraryService.issueBook(regId, bookId, date, 5);
+        }
+        else if(accLevel == 2){
+            return libraryService.issueBook(regId, bookId, date, 5);
+        }
+        else{
+            return libraryService.issueBook(regId, bookId, date, 3);
+        }
     }
 
     public String returnBook(String regId, String bookId, String date){
@@ -79,6 +84,18 @@ public class LibrarianService {
             return "Error While Reading file";
         }
         return "Users Added";
+    }
+
+    public List<Inventory> searchByBookId(String bookId){
+        return inventoryRepository.findByBookId(bookId);
+    }
+
+    public List<Inventory> searchByTitle(String title){
+        return inventoryRepository.findByBookName(title);
+    }
+
+    public List<Inventory> searchByAuthor(String author){
+        return inventoryRepository.findByAuthorName(author);
     }
 
     public void changeUserAccessLevel(String regId, int newAccessLevel){
