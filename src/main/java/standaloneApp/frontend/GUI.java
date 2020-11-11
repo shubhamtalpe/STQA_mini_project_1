@@ -166,6 +166,10 @@ public class GUI implements ActionListener {
 
     }
 
+    public void showSearchResults(List<Inventory> ret){
+
+    }
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == searchButton){
             String searchParam = searchBox.getText();
@@ -187,6 +191,7 @@ public class GUI implements ActionListener {
                         ret = librarianService.searchByAuthor(searchParam);
                         break;
                 }
+                showSearchResults(ret);
             }
         }
         if(e.getSource() == login){
