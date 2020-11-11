@@ -138,6 +138,34 @@ public class GUI implements ActionListener {
         f.setVisible(true);
     }
 
+    public void issueBookPage(){
+
+    }
+
+    public void returnBookPage(){
+
+    }
+
+    public void addBookPage(){
+
+    }
+
+    public void addMultipleBookPage(){
+
+    }
+
+    public void addUserPage(){
+
+    }
+
+    public void addMultipleUserPage(){
+
+    }
+
+    public void showUserDetailsPage(){
+
+    }
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == searchButton){
             String searchParam = searchBox.getText();
@@ -177,6 +205,27 @@ public class GUI implements ActionListener {
             f.revalidate();
             f.repaint();
             loginPage();
+        }
+        if(e.getSource() == issueBook){
+            issueBookPage();
+        }
+        if(e.getSource() == returnBook){
+            returnBookPage();
+        }
+        if(e.getSource() == addBook){
+            addBookPage();
+        }
+        if(e.getSource() == addMultipleBook){
+            addMultipleBookPage();
+        }
+        if(e.getSource() == addUser){
+            addUserPage();
+        }
+        if(e.getSource() == addMultipleUser){
+            addMultipleUserPage();
+        }
+        if(e.getSource() == showUserDetails){
+            showUserDetailsPage();
         }
     }
 
