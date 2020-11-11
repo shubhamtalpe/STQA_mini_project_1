@@ -30,18 +30,6 @@ public class LibraryService {
         return bookReturnRecordsRepository.findByRegId(regId);
     }
 
-    public void addBooksToInventory(String bookId, String bookName, String authorName, int numberOfCopies){
-        Inventory inventory = inventoryRepository.findById(bookId).orElse(null);
-        if(inventory == null){
-            inventoryRepository.save(new Inventory(bookId, bookName, authorName, numberOfCopies, numberOfCopies));
-        }
-        else{
-            inventory.setTotalCopies(inventory.getTotalCopies() + numberOfCopies);
-            inventory.setAvailableCopies(inventory.getAvailableCopies() + numberOfCopies);
-            inventoryRepository.save(inventory);
-        }
-    }
-
     public String issueBook(String regId, String bookId, String date, int allowedNumberOfBooks){
         Inventory book = inventoryRepository.findById(bookId).orElse(null);
         List<BookIssueRecords> issuedBooks = bookIssueRecordsRepository.findByRegIdAndIsReturned(regId, false);

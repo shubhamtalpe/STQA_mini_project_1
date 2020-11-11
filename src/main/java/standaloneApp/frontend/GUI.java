@@ -99,33 +99,34 @@ public class GUI implements ActionListener {
     private void librarianPage(){
         f.setLayout(null);
         issueBook = new JButton("Issue Book");
-        int x = (f.getWidth()-250)*3/4;
-        issueBook.setSize(250, 30);
-        issueBook.setLocation(x, 150);
+        int x = f.getWidth()/3;
+        issueBook.setSize(300, 30);
+        issueBook.setLocation(x-150, 350);
 
         returnBook = new JButton("Return Book");
-        returnBook.setSize(250,30);
-        returnBook.setLocation(x, 250);
+        returnBook.setSize(300,30);
+        returnBook.setLocation((x*2)-150, 350);
 
-        addBook = new JButton("Return Book");
-        addBook.setSize(250,30);
-        addBook.setLocation(x, 350);
+        addBook = new JButton("Add Book");
+        addBook.setSize(300,30);
+        addBook.setLocation(x-150, 550);
 
-        addMultipleBook = new JButton("Return Book");
-        addMultipleBook.setSize(250,30);
-        addMultipleBook.setLocation(x, 450);
+        addMultipleBook = new JButton("Add Multiple Books");
+        addMultipleBook.setSize(300,30);
+        addMultipleBook.setLocation((x*2)-150, 550);
 
-        addUser = new JButton("Return Book");
-        addUser.setSize(250,30);
-        addUser.setLocation(x, 550);
+        addUser = new JButton("Add User");
+        x = f.getWidth()/4;
+        addUser.setSize(300,30);
+        addUser.setLocation(x-150, 750);
 
-        addMultipleUser = new JButton("Return Book");
-        addMultipleUser.setSize(250,30);
-        addMultipleUser.setLocation(x, 650);
+        addMultipleUser = new JButton("Add Multiple Users");
+        addMultipleUser.setSize(300,30);
+        addMultipleUser.setLocation((x*2)-150, 750);
 
         showUserDetails = new JButton("Show User Details");
-        showUserDetails.setSize(250,30);
-        showUserDetails.setLocation(x, 750);
+        showUserDetails.setSize(300,30);
+        showUserDetails.setLocation((x*3)-150, 750);
 
         f.add(issueBook);
         f.add(returnBook);

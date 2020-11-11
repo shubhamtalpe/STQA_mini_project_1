@@ -44,13 +44,26 @@ public class LibrarianService {
         return libraryService.returnBook(regId, bookId, date);
     }
 
+    public String addBook(String bookId, String bookName, String authorName, int numberOfCopies){
+        Inventory inventory = inventoryRepository.findById(bookId).orElse(null);
+        if(inventory == null){
+            inventoryRepository.save(new Inventory(bookId, bookName, authorName, numberOfCopies, numberOfCopies));
+        }
+        else{
+            inventory.setTotalCopies(inventory.getTotalCopies() + numberOfCopies);
+            inventory.setAvailableCopies(inventory.getAvailableCopies() + numberOfCopies);
+            inventoryRepository.save(inventory);
+        }
+        return "Book Added";
+    }
+
     public String addBooksFromFile(String filePath){
         try{
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String row = "";
             while ((row = br.readLine()) != null) {
                 String[] data = row.split(",");
-                libraryService.addBooksToInventory(data[0], data[1], data[2], Integer.parseInt(data[3]));
+                addBook(data[0], data[1], data[2], Integer.parseInt(data[3]));
             }
             br.close();
         }
@@ -84,6 +97,10 @@ public class LibrarianService {
             return "Error While Reading file";
         }
         return "Users Added";
+    }
+
+    public UserInfo showUserDetails(String regId){
+        return userInfoRepository.findByRegId(regId);
     }
 
     public List<Inventory> searchByBookId(String bookId){
