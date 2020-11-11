@@ -240,7 +240,7 @@ public class GUI implements ActionListener {
             f.setResizable(true);
             f.setExtendedState(JFrame.MAXIMIZED_BOTH);
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            librarianPage();
+            mainPage();
         }
         catch(Exception e){
             e.printStackTrace();
