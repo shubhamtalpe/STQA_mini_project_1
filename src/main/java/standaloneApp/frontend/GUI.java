@@ -19,9 +19,9 @@ public class GUI implements ActionListener {
     JFrame f = new JFrame();
     JFrame librarian;
     JButton login, loginSelect, searchButton, issueBook, returnBook, addBook, addMultipleBook, addUser, addMultipleUser, showUserDetails, issuedBook, returnedBook, addedBook, addedUser, logout;
-    JTextField loginField, searchBox, regId, bookId, bookName, authorName, numberOfCopies, userName, accessLevel;
+    JTextField loginField, searchBox, regId, bookId, bookName, authorName, numberOfCopies, userName;
     JPasswordField passwordField;
-    JComboBox searchMenu;
+    JComboBox searchMenu, accessLevel;
 
     @Autowired
     private LoginService loginService;
@@ -315,7 +315,8 @@ public class GUI implements ActionListener {
         userNameLabel.setSize(100,30);
         userNameLabel.setLocation((x-100), 200);
 
-        accessLevel = new JTextField();
+        String[] access = {"Admin", "Teacher", "Student"};
+        accessLevel = new JComboBox(access);
         accessLevel.setSize(300, 30);
         x = (librarian.getWidth()-accessLevel.getWidth())/2;
         accessLevel.setLocation(x, 300);
@@ -432,7 +433,7 @@ public class GUI implements ActionListener {
             librarian.dispose();
         }
         if(e.getSource() == addedUser) {
-            librarianService.addUser(regId.getText(),userName.getText(),Integer.valueOf(accessLevel.getText()));
+            librarianService.addUser(regId.getText(),userName.getText(),accessLevel.getSelectedIndex()+1);
             JOptionPane.showMessageDialog(f, "User Added", "User Added", JOptionPane.INFORMATION_MESSAGE);
             librarian.dispose();
         }
