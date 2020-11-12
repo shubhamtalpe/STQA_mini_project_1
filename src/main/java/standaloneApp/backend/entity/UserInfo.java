@@ -10,6 +10,10 @@ public class UserInfo {
     private String name;
     private int accessLevel;    //1 for admin, 2 for teacher and 3 for student
 
+
+    public UserInfo() {
+    }
+
     public UserInfo(String regId, String name, int accessLevel) {
         this.regId = regId;
         this.name = name;

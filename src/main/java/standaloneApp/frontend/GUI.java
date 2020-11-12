@@ -3,6 +3,7 @@ package standaloneApp.frontend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import standaloneApp.backend.entity.Inventory;
+import standaloneApp.backend.entity.UserInfo;
 import standaloneApp.backend.service.LibrarianService;
 import standaloneApp.backend.service.LoginService;
 
@@ -22,7 +23,7 @@ public class GUI implements ActionListener {
     JTextField loginField, searchBox, regId, bookId, bookName, authorName, numberOfCopies, userName;
     JPasswordField passwordField;
     JComboBox searchMenu, accessLevel;
-
+    String[] access = {"Admin", "Teacher", "Student"};
     @Autowired
     private LoginService loginService;
 
@@ -315,7 +316,7 @@ public class GUI implements ActionListener {
         userNameLabel.setSize(100,30);
         userNameLabel.setLocation((x-100), 200);
 
-        String[] access = {"Admin", "Teacher", "Student"};
+
         accessLevel = new JComboBox(access);
         accessLevel.setSize(300, 30);
         x = (librarian.getWidth()-accessLevel.getWidth())/2;
@@ -347,7 +348,10 @@ public class GUI implements ActionListener {
     }
 
     public void showUserDetailsPage(){
-
+        String regId = JOptionPane.showInputDialog(f,"Enter Reg. ID", "Registration ID", JOptionPane.QUESTION_MESSAGE);
+        UserInfo userInfo = librarianService.showUserDetails(regId);
+        String info = "Reg. ID : " + userInfo.getRegId() + "\nName : " + userInfo.getName() + "\nAccess Level : " + access[userInfo.getAccessLevel()-1];
+        JOptionPane.showMessageDialog(f, info, "User Details", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void showSearchResults(List<Inventory> ret){
