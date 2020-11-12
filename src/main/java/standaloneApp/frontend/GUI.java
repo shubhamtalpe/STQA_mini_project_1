@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -179,7 +180,7 @@ public class GUI implements ActionListener {
             }
             else{
                 int searchCriteria = searchMenu.getSelectedIndex();
-                List<Inventory> ret;
+                List<Inventory> ret = new ArrayList<>();
                 switch (searchCriteria){
                     case 0:
                         ret = librarianService.searchByBookId(searchParam);
