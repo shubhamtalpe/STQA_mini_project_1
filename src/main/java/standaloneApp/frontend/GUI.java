@@ -7,6 +7,7 @@ import standaloneApp.backend.service.LibrarianService;
 import standaloneApp.backend.service.LoginService;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,8 +17,9 @@ import java.util.List;
 @Component
 public class GUI implements ActionListener {
     JFrame f = new JFrame();
-    JButton login, loginSelect, searchButton, issueBook, returnBook, addBook, addMultipleBook, addUser, addMultipleUser, showUserDetails;
-    JTextField loginField, searchBox;
+    JFrame librarian;
+    JButton login, loginSelect, searchButton, issueBook, returnBook, addBook, addMultipleBook, addUser, addMultipleUser, showUserDetails, issuedBook, returnedBook, addedBook, addedUser, logout;
+    JTextField loginField, searchBox, regId, bookId, bookName, authorName, numberOfCopies, userName, accessLevel;
     JPasswordField passwordField;
     JComboBox searchMenu;
 
@@ -103,31 +105,43 @@ public class GUI implements ActionListener {
         int x = f.getWidth()/3;
         issueBook.setSize(300, 30);
         issueBook.setLocation(x-150, 350);
+        issueBook.addActionListener(this);
 
         returnBook = new JButton("Return Book");
         returnBook.setSize(300,30);
         returnBook.setLocation((x*2)-150, 350);
+        returnBook.addActionListener(this);
 
         addBook = new JButton("Add Book");
         addBook.setSize(300,30);
         addBook.setLocation(x-150, 550);
+        addBook.addActionListener(this);
 
         addMultipleBook = new JButton("Add Multiple Books");
         addMultipleBook.setSize(300,30);
         addMultipleBook.setLocation((x*2)-150, 550);
+        addMultipleBook.addActionListener(this);
 
         addUser = new JButton("Add User");
         x = f.getWidth()/4;
         addUser.setSize(300,30);
         addUser.setLocation(x-150, 750);
+        addUser.addActionListener(this);
 
         addMultipleUser = new JButton("Add Multiple Users");
         addMultipleUser.setSize(300,30);
         addMultipleUser.setLocation((x*2)-150, 750);
+        addMultipleUser.addActionListener(this);
 
         showUserDetails = new JButton("Show User Details");
         showUserDetails.setSize(300,30);
         showUserDetails.setLocation((x*3)-150, 750);
+        showUserDetails.addActionListener(this);
+
+        logout = new JButton("Logout");
+        logout.setSize(200,30);
+        logout.setLocation(f.getWidth()-300, 60);
+        logout.addActionListener(this);
 
         f.add(issueBook);
         f.add(returnBook);
@@ -136,31 +150,199 @@ public class GUI implements ActionListener {
         f.add(addUser);
         f.add(addMultipleUser);
         f.add(showUserDetails);
+        f.add(logout);
         f.setVisible(true);
     }
 
     public void issueBookPage(){
 
+        librarian = new JFrame();
+        librarian.setSize(800,600);
+        librarian.setLayout(null);
+
+        JLabel regIdLabel = new JLabel("Reg. ID", SwingConstants.CENTER);
+        JLabel bookIdLabel = new JLabel("Book ID", SwingConstants.CENTER);
+
+        regId = new JTextField();
+        regId.setSize(300, 30);
+        int x = (librarian.getWidth()-regId.getWidth())/2;
+        regId.setLocation(x, 100);
+        regIdLabel.setSize(100,30);
+        regIdLabel.setLocation((x-100), 100);
+
+        bookId = new JTextField();
+        bookId.setSize(300, 30);
+        x = (librarian.getWidth()-bookId.getWidth())/2;
+        bookId.setLocation(x,200);
+        bookIdLabel.setSize(100,30);
+        bookIdLabel.setLocation((x-100), 200);
+
+        issuedBook = new JButton("Issue Book");
+        issuedBook.setSize(250,30);
+        issuedBook.setLocation((librarian.getWidth()-issuedBook.getWidth())/2, 300);
+        issuedBook.addActionListener(this);
+
+        librarian.add(regId);
+        librarian.add(bookId);
+        librarian.add(issuedBook);
+        librarian.add(regIdLabel);
+        librarian.add(bookIdLabel);
+        librarian.setVisible(true);
+
     }
 
     public void returnBookPage(){
+        librarian = new JFrame();
+        librarian.setSize(800,600);
+        librarian.setLayout(null);
+
+        JLabel regIdLabel = new JLabel("Reg. ID", SwingConstants.CENTER);
+        JLabel bookIdLabel = new JLabel("Book ID", SwingConstants.CENTER);
+
+        regId = new JTextField();
+        regId.setSize(300, 30);
+        int x = (librarian.getWidth()-regId.getWidth())/2;
+        regId.setLocation(x, 100);
+        regIdLabel.setSize(100,30);
+        regIdLabel.setLocation((x-100), 100);
+
+        bookId = new JTextField();
+        bookId.setSize(300, 30);
+        x = (librarian.getWidth()-bookId.getWidth())/2;
+        bookId.setLocation(x,200);
+        bookIdLabel.setSize(100,30);
+        bookIdLabel.setLocation((x-100), 200);
+
+        returnedBook = new JButton("Return Book");
+        returnedBook.setSize(250,30);
+        returnedBook.setLocation((librarian.getWidth()-returnedBook.getWidth())/2, 300);
+        returnedBook.addActionListener(this);
+
+        librarian.add(regId);
+        librarian.add(bookId);
+        librarian.add(returnedBook);
+        librarian.add(regIdLabel);
+        librarian.add(bookIdLabel);
+        librarian.setVisible(true);
 
     }
 
     public void addBookPage(){
+        System.out.println("Add Book");
+        librarian = new JFrame();
+        librarian.setSize(800,600);
+        librarian.setLayout(null);
+
+        JLabel bookNameLabel = new JLabel("Book Name", SwingConstants.CENTER);
+        JLabel bookIdLabel = new JLabel("Book ID", SwingConstants.CENTER);
+        JLabel authorNameLabel = new JLabel("Author Name", SwingConstants.CENTER);
+        JLabel numberOfCopiesLabel = new JLabel("No of Copies", SwingConstants.CENTER);
+
+        bookId = new JTextField();
+        bookId.setSize(300, 30);
+        int x = (librarian.getWidth()-bookId.getWidth())/2;
+        bookId.setLocation(x,100);
+        bookIdLabel.setSize(100,30);
+        bookIdLabel.setLocation((x-100), 100);
+
+        bookName = new JTextField();
+        bookName.setSize(300, 30);
+        x = (librarian.getWidth()-bookName.getWidth())/2;
+        bookName.setLocation(x, 200);
+        bookNameLabel.setSize(100,30);
+        bookNameLabel.setLocation((x-100), 200);
+
+        authorName = new JTextField();
+        authorName.setSize(300, 30);
+        x = (librarian.getWidth()-authorName.getWidth())/2;
+        authorName.setLocation(x, 300);
+        authorNameLabel.setSize(100,30);
+        authorNameLabel.setLocation((x-100), 300);
+
+        numberOfCopies = new JTextField();
+        numberOfCopies.setSize(300, 30);
+        x = (librarian.getWidth()-numberOfCopies.getWidth())/2;
+        numberOfCopies.setLocation(x, 400);
+        numberOfCopiesLabel.setSize(100,30);
+        numberOfCopiesLabel.setLocation((x-100), 400);
+
+        addedBook = new JButton("Add Book");
+        addedBook.setSize(250,30);
+        addedBook.setLocation((librarian.getWidth()-addedBook.getWidth())/2, 500);
+        addedBook.addActionListener(this);
+
+        librarian.add(bookId);
+        librarian.add(bookIdLabel);
+        librarian.add(bookName);
+        librarian.add(bookNameLabel);
+        librarian.add(authorName);
+        librarian.add(authorNameLabel);
+        librarian.add(numberOfCopies);
+        librarian.add(numberOfCopiesLabel);
+        librarian.add(addedBook);
+        librarian.setVisible(true);
 
     }
 
     public void addMultipleBookPage(){
+        JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView());
 
+        j.showSaveDialog(null);
+        librarianService.addBooksFromFile(j.getSelectedFile().getAbsolutePath());
+        JOptionPane.showMessageDialog(f, "Books Added", "Books Added", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void addUserPage(){
+        librarian = new JFrame();
+        librarian.setSize(800,600);
+        librarian.setLayout(null);
 
+        JLabel regIdLabel = new JLabel("Reg. ID", SwingConstants.CENTER);
+        JLabel userNameLabel = new JLabel("Name", SwingConstants.CENTER);
+        JLabel accessLevelLabel = new JLabel("Access Level", SwingConstants.CENTER);
+
+        regId = new JTextField();
+        regId.setSize(300, 30);
+        int x = (librarian.getWidth()-regId.getWidth())/2;
+        regId.setLocation(x, 100);
+        regIdLabel.setSize(100,30);
+        regIdLabel.setLocation((x-100), 100);
+
+        userName = new JTextField();
+        userName.setSize(300, 30);
+        x = (librarian.getWidth()-userName.getWidth())/2;
+        userName.setLocation(x, 200);
+        userNameLabel.setSize(100,30);
+        userNameLabel.setLocation((x-100), 200);
+
+        accessLevel = new JTextField();
+        accessLevel.setSize(300, 30);
+        x = (librarian.getWidth()-accessLevel.getWidth())/2;
+        accessLevel.setLocation(x, 300);
+        accessLevelLabel.setSize(100,30);
+        accessLevelLabel.setLocation((x-100), 300);
+
+        addedUser = new JButton("Add User");
+        addedUser.setSize(250,30);
+        addedUser.setLocation((librarian.getWidth()-addedUser.getWidth())/2, 400);
+        addedUser.addActionListener(this);
+
+        librarian.add(regId);
+        librarian.add(regIdLabel);
+        librarian.add(userName);
+        librarian.add(userNameLabel);
+        librarian.add(accessLevel);
+        librarian.add(accessLevelLabel);
+        librarian.add(addedUser);
+        librarian.setVisible(true);
     }
 
     public void addMultipleUserPage(){
+        JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView());
 
+        j.showSaveDialog(null);
+        librarianService.addMultipleUserFromFile(j.getSelectedFile().getAbsolutePath());
+        JOptionPane.showMessageDialog(f, "Users Added", "Users Added", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void showUserDetailsPage(){
@@ -232,6 +414,33 @@ public class GUI implements ActionListener {
         }
         if(e.getSource() == showUserDetails){
             showUserDetailsPage();
+        }
+        if(e.getSource() == issuedBook) {
+
+            librarianService.issueBook(regId.getText(),bookId.getText(),new java.util.Date().toString());
+            JOptionPane.showMessageDialog(f, "Book Issued", "Issued", JOptionPane.INFORMATION_MESSAGE);
+            librarian.dispose();
+        }
+        if(e.getSource() == returnedBook) {
+            librarianService.returnBook(regId.getText(),bookId.getText(),new java.util.Date().toString());
+            JOptionPane.showMessageDialog(f, "Book Returned", "Returned", JOptionPane.INFORMATION_MESSAGE);
+            librarian.dispose();
+        }
+        if(e.getSource() == addedBook) {
+            librarianService.addBook(bookId.getText(),bookName.getText(),authorName.getText(),Integer.valueOf(numberOfCopies.getText()));
+            JOptionPane.showMessageDialog(f, "Book Added", "Book Added", JOptionPane.INFORMATION_MESSAGE);
+            librarian.dispose();
+        }
+        if(e.getSource() == addedUser) {
+            librarianService.addUser(regId.getText(),userName.getText(),Integer.valueOf(accessLevel.getText()));
+            JOptionPane.showMessageDialog(f, "User Added", "User Added", JOptionPane.INFORMATION_MESSAGE);
+            librarian.dispose();
+        }
+        if(e.getSource() == logout) {
+            f.getContentPane().removeAll();
+            f.revalidate();
+            f.repaint();
+            mainPage();
         }
     }
 

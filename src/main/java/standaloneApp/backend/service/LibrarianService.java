@@ -44,7 +44,7 @@ public class LibrarianService {
         return libraryService.returnBook(regId, bookId, date);
     }
 
-    public String addBook(String bookId, String bookName, String authorName, int numberOfCopies){
+    public void addBook(String bookId, String bookName, String authorName, int numberOfCopies){
         Inventory inventory = inventoryRepository.findById(bookId).orElse(null);
         if(inventory == null){
             inventoryRepository.save(new Inventory(bookId, bookName, authorName, numberOfCopies, numberOfCopies));
@@ -54,7 +54,7 @@ public class LibrarianService {
             inventory.setAvailableCopies(inventory.getAvailableCopies() + numberOfCopies);
             inventoryRepository.save(inventory);
         }
-        return "Book Added";
+
     }
 
     public String addBooksFromFile(String filePath){
