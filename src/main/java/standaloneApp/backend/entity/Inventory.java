@@ -12,6 +12,9 @@ public class Inventory {
     private int totalCopies;
     private int availableCopies;
 
+    public Inventory() {
+    }
+
     public Inventory(String bookId, String bookName, String authorName, int totalCopies, int availableCopies) {
         this.bookId = bookId;
         this.bookName = bookName;

@@ -13,6 +13,9 @@ public class BookIssueRecords {
     private String date;
     private boolean isReturned;
 
+    public BookIssueRecords() {
+    }
+
     public BookIssueRecords(String regId, String bookId, String date) {
         this.setIssueTransacId(UUID.randomUUID().toString());
         this.regId = regId;

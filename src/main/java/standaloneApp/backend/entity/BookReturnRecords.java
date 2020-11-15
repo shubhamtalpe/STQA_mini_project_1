@@ -12,6 +12,9 @@ public class BookReturnRecords {
     private String bookId;
     private String date;
 
+    public BookReturnRecords() {
+    }
+
     public BookReturnRecords(String regId, String bookId, String date) {
         this.setReturnTransacId(UUID.randomUUID().toString());
         this.regId = regId;

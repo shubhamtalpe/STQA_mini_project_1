@@ -18,7 +18,7 @@ import java.util.List;
 @Component
 public class GUI implements ActionListener {
     JFrame f = new JFrame();
-    JFrame librarian;
+    JFrame librarian, searchResults;
     JButton login, loginSelect, searchButton, issueBook, returnBook, addBook, addMultipleBook, addUser, addMultipleUser, showUserDetails, issuedBook, returnedBook, addedBook, addedUser, logout;
     JTextField loginField, searchBox, regId, bookId, bookName, authorName, numberOfCopies, userName;
     JPasswordField passwordField;
@@ -289,8 +289,8 @@ public class GUI implements ActionListener {
         JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView());
 
         j.showSaveDialog(null);
-        librarianService.addBooksFromFile(j.getSelectedFile().getAbsolutePath());
-        JOptionPane.showMessageDialog(f, "Books Added", "Books Added", JOptionPane.INFORMATION_MESSAGE);
+        String message = librarianService.addBooksFromFile(j.getSelectedFile().getAbsolutePath());
+        JOptionPane.showMessageDialog(f, message, "Result", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void addUserPage(){
@@ -343,8 +343,8 @@ public class GUI implements ActionListener {
         JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView());
 
         j.showSaveDialog(null);
-        librarianService.addMultipleUserFromFile(j.getSelectedFile().getAbsolutePath());
-        JOptionPane.showMessageDialog(f, "Users Added", "Users Added", JOptionPane.INFORMATION_MESSAGE);
+        String msg = librarianService.addMultipleUserFromFile(j.getSelectedFile().getAbsolutePath());
+        JOptionPane.showMessageDialog(f, msg, "Message", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void showUserDetailsPage(){
@@ -355,7 +355,40 @@ public class GUI implements ActionListener {
     }
 
     public void showSearchResults(List<Inventory> ret){
+        if(ret.size() == 0){
+            JOptionPane.showMessageDialog(f, "No Books found", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            String[][] data = new String[ret.size()+1][4];
+            data[0][0] = "ID";
+            data[0][1] = "Book Name";
+            data[0][2] = "Author Name";
+            data[0][3] = "Available Number of Copies";
+            for(int i=1; i<=ret.size(); i++){
+                Inventory d = ret.get(i);
+                data[i][0] = d.getBookId();
+                data[i][1] = d.getBookName();
+                data[i][2] = d.getAuthorName();
+                data[i][3] = Integer.toString(d.getAvailableCopies());
+            }
+            String[] columns = {"Book ID", "Book Name", "Author Name", "Available Copies"};
 
+            searchResults = new JFrame();
+            searchResults.setSize(800,600);
+            searchResults.setLayout(null);
+
+            JTable table = new JTable(data, columns);
+            table.setBounds(20, 20, 760, 560);
+            table.getColumnModel().getColumn(0).setPreferredWidth(40);
+            table.getColumnModel().getColumn(1).setPreferredWidth(350);
+            table.getColumnModel().getColumn(2).setPreferredWidth(350);
+            table.getColumnModel().getColumn(3).setPreferredWidth(20);
+
+            JScrollPane sp=new JScrollPane(table);
+            searchResults.add(sp);
+            searchResults.add(table);
+            searchResults.setVisible(true);
+        }
     }
 
     public void actionPerformed(ActionEvent e){
@@ -422,13 +455,13 @@ public class GUI implements ActionListener {
         }
         if(e.getSource() == issuedBook) {
 
-            librarianService.issueBook(regId.getText(),bookId.getText(),new java.util.Date().toString());
-            JOptionPane.showMessageDialog(f, "Book Issued", "Issued", JOptionPane.INFORMATION_MESSAGE);
+            String msg = librarianService.issueBook(regId.getText(),bookId.getText(),new java.util.Date().toString());
+            JOptionPane.showMessageDialog(f, msg, "Message", JOptionPane.INFORMATION_MESSAGE);
             librarian.dispose();
         }
         if(e.getSource() == returnedBook) {
-            librarianService.returnBook(regId.getText(),bookId.getText(),new java.util.Date().toString());
-            JOptionPane.showMessageDialog(f, "Book Returned", "Returned", JOptionPane.INFORMATION_MESSAGE);
+            String msg = librarianService.returnBook(regId.getText(),bookId.getText(),new java.util.Date().toString());
+            JOptionPane.showMessageDialog(f, msg, "Message", JOptionPane.INFORMATION_MESSAGE);
             librarian.dispose();
         }
         if(e.getSource() == addedBook) {
