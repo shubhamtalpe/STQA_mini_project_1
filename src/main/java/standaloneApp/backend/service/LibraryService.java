@@ -61,7 +61,7 @@ public class LibraryService {
     public String returnBook(String regId, String bookId, String date){
         Inventory book = inventoryRepository.findById(bookId).orElse(null);
         List<BookIssueRecords> bookIssue = bookIssueRecordsRepository.findByRegIdAndBookId(regId, bookId);
-        if(book == null || bookIssue==null){
+        if(book == null || bookIssue.size() == 0){
             return "Invalid Book ID";
         }
         String issueTransacId = null;

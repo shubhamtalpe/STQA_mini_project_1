@@ -465,13 +465,13 @@ public class GUI implements ActionListener {
             librarian.dispose();
         }
         if(e.getSource() == addedBook) {
-            librarianService.addBook(bookId.getText(),bookName.getText(),authorName.getText(),Integer.valueOf(numberOfCopies.getText()));
-            JOptionPane.showMessageDialog(f, "Book Added", "Book Added", JOptionPane.INFORMATION_MESSAGE);
+            String msg = librarianService.addBook(bookId.getText(),bookName.getText(),authorName.getText(),Integer.valueOf(numberOfCopies.getText()));
+            JOptionPane.showMessageDialog(f, msg, "Book Added", JOptionPane.INFORMATION_MESSAGE);
             librarian.dispose();
         }
         if(e.getSource() == addedUser) {
-            librarianService.addUser(regId.getText(),userName.getText(),accessLevel.getSelectedIndex()+1);
-            JOptionPane.showMessageDialog(f, "User Added", "User Added", JOptionPane.INFORMATION_MESSAGE);
+            String msg = librarianService.addUser(regId.getText(),userName.getText(),accessLevel.getSelectedIndex()+1);
+            JOptionPane.showMessageDialog(f, msg, "User Added", JOptionPane.INFORMATION_MESSAGE);
             librarian.dispose();
         }
         if(e.getSource() == logout) {

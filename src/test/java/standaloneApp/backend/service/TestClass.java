@@ -12,9 +12,20 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @ContextConfiguration(loader = HeadlessSpringBootContextLoader.class)
-class LibrarianServiceTest {
+class TestClass {
     @Autowired
     LibrarianService librarianService;
+    @Autowired
+    LoginService loginService;
+
+    @Test
+    void checkValidCredentials() {
+        assertTrue(loginService.checkCredentials("admin", "admin@123"));
+    }
+    @Test
+    void checkInvalidCredentials() {
+        assertFalse(loginService.checkCredentials("admin", "admin123"));
+    }
 
     @Test
     void issueMoreBooksThanAllowed() {
@@ -23,7 +34,7 @@ class LibrarianServiceTest {
 
     @Test
     void issueInvalidBook() {
-        assertEquals(librarianService.issueBook("0100", "00005", new java.util.Date().toString()), "Invalid Book ID");
+        assertEquals(librarianService.issueBook("0102", "00008", new java.util.Date().toString()), "Invalid Book ID");
     }
 
     @Test
@@ -43,7 +54,7 @@ class LibrarianServiceTest {
 
     @Test
     void returnBookWhichIsNotIssued() {
-        assertEquals(librarianService.returnBook("0100", "00004", new java.util.Date().toString()), "Invalid Book ID");
+        assertEquals(librarianService.returnBook("0102", "00004", new java.util.Date().toString()), "Invalid Book ID");
     }
 
     @Test
@@ -53,46 +64,46 @@ class LibrarianServiceTest {
 
     @Test
     void returnBookWhichIsAlreadyReturned() {
-        assertEquals(librarianService.returnBook("0010", "00001", new java.util.Date().toString()), "Book Already returned");
+        assertEquals(librarianService.returnBook("0010", "00004", new java.util.Date().toString()), "Book Already returned");
     }
-
-
-    //Done till here
-
 
     @Test
     void addBook() {
+        assertEquals(librarianService.addBook("11111", "Test Book", "Test Author", 1), "Book Added");
     }
 
     @Test
-    void addBooksFromFile() {
+    void addBooksFromInvalidFile() {
+        assertEquals(librarianService.addBooksFromFile(""), "Error While Reading file");
     }
+
+//    @Test
+//    void addBooksFromFile() {
+//        assertEquals(librarianService.addBooksFromFile(""), "Books Added");
+//    }
 
     @Test
     void addUser() {
+        assertEquals(librarianService.addUser("1111", "Test User", 3), "User added");
     }
 
     @Test
-    void addMultipleUserFromFile() {
+    void addMultipleUserFromInvalidFile() {
+        assertEquals(librarianService.addMultipleUserFromFile(""), "Error While Reading file");
     }
 
-    @Test
-    void showUserDetails() {
-    }
+//    @Test
+//    void addMultipleUserFromFile() {
+//        assertEquals(librarianService.addMultipleUserFromFile(""), "Users Added");
+//    }
 
     @Test
-    void searchByBookId() {
-    }
-
-    @Test
-    void searchByTitle() {
-    }
-
-    @Test
-    void searchByAuthor() {
+    void changeInvalidUserAccessLevel() {
+        assertEquals(librarianService.changeUserAccessLevel("0",3), "Invalid User ID");
     }
 
     @Test
     void changeUserAccessLevel() {
+        assertEquals(librarianService.changeUserAccessLevel("0102", 3), "Access Level Changed");
     }
 }

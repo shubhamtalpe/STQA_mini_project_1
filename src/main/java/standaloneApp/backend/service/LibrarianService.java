@@ -44,7 +44,7 @@ public class LibrarianService {
         return libraryService.returnBook(regId, bookId, date);
     }
 
-    public void addBook(String bookId, String bookName, String authorName, int numberOfCopies){
+    public String addBook(String bookId, String bookName, String authorName, int numberOfCopies){
         Inventory inventory = inventoryRepository.findById(bookId).orElse(null);
         if(inventory == null){
             inventoryRepository.save(new Inventory(bookId, bookName, authorName, numberOfCopies, numberOfCopies));
@@ -54,7 +54,7 @@ public class LibrarianService {
             inventory.setAvailableCopies(inventory.getAvailableCopies() + numberOfCopies);
             inventoryRepository.save(inventory);
         }
-
+        return "Book Added";
     }
 
     public String addBooksFromFile(String filePath){
@@ -76,8 +76,9 @@ public class LibrarianService {
         return "Books Added";
     }
 
-    public void addUser(String regId, String name, int accessLevel){
+    public String addUser(String regId, String name, int accessLevel){
         userInfoRepository.save(new UserInfo(regId, name, accessLevel));
+        return "User added";
     }
 
     public String addMultipleUserFromFile(String filePath){
@@ -115,9 +116,13 @@ public class LibrarianService {
         return inventoryRepository.findByAuthorName(author);
     }
 
-    public void changeUserAccessLevel(String regId, int newAccessLevel){
+    public String changeUserAccessLevel(String regId, int newAccessLevel){
         UserInfo user = userInfoRepository.findById(regId).orElse(null);
+        if(user == null){
+            return "Invalid User ID";
+        }
         user.setAccessLevel(newAccessLevel);
         userInfoRepository.save(user);
+        return "Access Level Changed";
     }
 }
