@@ -77,10 +77,10 @@ class TestClass {
         assertEquals(librarianService.addBooksFromFile(""), "Error While Reading file");
     }
 
-//    @Test
-//    void addBooksFromFile() {
-//        assertEquals(librarianService.addBooksFromFile(""), "Books Added");
-//    }
+    @Test
+    void addBooksFromFile() {
+        assertEquals(librarianService.addBooksFromFile("D:\\Book.csv"), "Books Added");
+    }
 
     @Test
     void addUser() {
@@ -92,10 +92,10 @@ class TestClass {
         assertEquals(librarianService.addMultipleUserFromFile(""), "Error While Reading file");
     }
 
-//    @Test
-//    void addMultipleUserFromFile() {
-//        assertEquals(librarianService.addMultipleUserFromFile(""), "Users Added");
-//    }
+    @Test
+    void addMultipleUserFromFile() {
+        assertEquals(librarianService.addMultipleUserFromFile("D:\\User.csv"), "Users Added");
+    }
 
     @Test
     void changeInvalidUserAccessLevel() {
