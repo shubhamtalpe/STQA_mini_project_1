@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: standaloneApp.backend.service.TestClass
 -------------------------------------------------------------------------------
-Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.236 s - in standaloneApp.backend.service.TestClass
+Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.133 s - in standaloneApp.backend.service.TestClass

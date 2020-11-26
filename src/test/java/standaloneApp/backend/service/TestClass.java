@@ -22,6 +22,7 @@ class TestClass {
     void checkValidCredentials() {
         assertTrue(loginService.checkCredentials("admin", "admin@123"));
     }
+
     @Test
     void checkInvalidCredentials() {
         assertFalse(loginService.checkCredentials("admin", "admin123"));

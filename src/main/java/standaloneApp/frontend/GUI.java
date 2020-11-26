@@ -365,7 +365,7 @@ public class GUI implements ActionListener {
             data[0][2] = "Author Name";
             data[0][3] = "Available Number of Copies";
             for(int i=1; i<=ret.size(); i++){
-                Inventory d = ret.get(i);
+                Inventory d = ret.get(i-1   );
                 data[i][0] = d.getBookId();
                 data[i][1] = d.getBookName();
                 data[i][2] = d.getAuthorName();
